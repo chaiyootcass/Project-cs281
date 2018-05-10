@@ -1,7 +1,7 @@
 <head>
-    <title>Sign Up</title>
+  <title>Sign Up
+  </title>
 </head>
-
 <?php
 session_start();
 include 'templates/header_top.php';
@@ -17,8 +17,9 @@ $phone = "";
 $email = "";
 $password = "";
 $address = "";
-$ip = "";
+$ipaddress = '';
 $msg = "";
+$ip = "";
 if (isset($_POST['full_name'])) {
     $full_name = $_POST['full_name'];
     $country = $_POST['country'];
@@ -68,7 +69,7 @@ if (isset($_POST['full_name'])) {
             $msg .= "That email address is already been taken.<br/>";
         } else {
             $password = md5($password);
-            $ip = $_SERVER['REMOTE_ADDR'];
+            $ip = getenv('HTTP_CLIENT_IP');
             $sql = mysqli_query($con, "INSERT INTO users(full_name, country, city, state, phone, email, password, address, ip, signup) VALUES('$full_name','$country','$city','$state','$phone','$email','$password','$address','$ip',now())");
             header("location: success_register.php");
             exit();
@@ -76,95 +77,123 @@ if (isset($_POST['full_name'])) {
     }
 }
 ?>
-
-
-
 <!-- Navigation -->
 <?php
 include 'templates/navigation.php';
-
 ?>
 <!-- END Navigation -->
-
 <!-- Including Slider... -->
-
-
 <?php
 include 'templates/slider.php';
 ?>
 <!--slider end -->
-
-    <div id="content">
-        <div class="products-holder" style="background: rgba(0,0,0,.4); border-radius: 10px; width: 700px; margin: 0 auto;">
-
-            <div class="middle"style="background: transparent">
-                <div class="label">
-                    <h3>Create an Account</h3>
-                </div>
-                <div class="cl"></div>
-            <form action="signup.php" method="post" >
-
-
-                    <div class="cl"></div>
-            </div>
-            <table cellpadding="5" cellspacing="5" border="0">
-
-                <tr>
-                    <td align="right"><label>Full Name: *</label></td>
-                    <td align="left"><input required  autofocus type="text" name="full_name" placeholder="Enter Full Name..." class="text_input" maxlength="255"/></td>
-                </tr>
-                <tr>
-                    <td align="right"><label>Country: *</label></td>
-                    <td align="left">
-                        <select required name="country"  class="text_input" style="width: 315px;">
-                            <option value=""></option>
-                            <?php include_once 'countries.txt';?>
-                        </select>
-                    </td>
-
-                </tr>
-                <tr>
-                    <td align="right"><label>City: *</label></td>
-                    <td align="left"><input required type="text" name="city" placeholder="Enter Your City..." class="text_input" maxlength="50"/></td>
-                </tr>
-
-                <tr>
-                    <td align="right"><label>State:</label></td>
-                    <td align="left"><input  type="text" name="state" placeholder="Enter Your State..." class="text_input" maxlength="50"/></td>
-                </tr>
-
-
-                <tr>
-                    <td align="right"><label>Phone: *</label></td>
-                    <td align="left"><input required type="tel" name="phone" placeholder="Enter Your Phone Number..." class="text_input" maxlength="15"/></td>
-                </tr>
-
-                <tr>
-                    <td align="right"><label>Email: *</label></td>
-                    <td align="left"><input required type="email" name="email" placeholder="Enter Your Email Address..." class="text_input" maxlength="100"/></td>
-                </tr>
-
-                <tr>
-                    <td align="right"><label>Password: *</label></td>
-                    <td align="left"><input required type="password" name="password" placeholder="Enter Password..." class="text_input" maxlength="50"/></td>
-                </tr>
-
-                <tr>
-                    <td align="right"><label>Address: *</label></td>
-                    <td align="left"><Textarea required style="height: 80px; width: 300px;padding: 5px;resize: none;" name="address" placeholder="Enter  Your Address..." class="text_input" ></textarea></td>
-                </tr>
-                <tr >
-                    <td  colspan="2" align="center"><input id="submit" type="submit" value="Create Account"/></td>
-
-                </tr>
-                <tr>
-                    <td colspan="2" align="center"><?php echo "<p style='color: white; font-size: 17px;' >" . $msg . "</p>"; ?></td>
-                </tr>
-            </table>
-            </form>
+<div id="content">
+  <div class="products-holder" style="background: rgba(0,0,0,.4); border-radius: 10px; width: 700px; margin: 0 auto;">
+    <div class="middle"style="background: transparent">
+      <div class="label">
+        <h3>Create an Account
+        </h3>
+      </div>
+      <div class="cl">
+      </div>
+      <form action="signup.php" method="post" >
+        <div class="cl">
         </div>
-    </div>
-    <div id="footer-push"></div>
+        </div>
+      <table cellpadding="5" cellspacing="5" border="0">
+        <tr>
+          <td align="right">
+            <label>Full Name: *
+            </label>
+          </td>
+          <td align="left">
+            <input required  autofocus type="text" name="full_name" placeholder="Enter Full Name..." class="text_input" maxlength="255"/>
+          </td>
+        </tr>
+        <tr>
+          <td align="right">
+            <label>Country: *
+            </label>
+          </td>
+          <td align="left">
+            <select required name="country"  class="text_input" style="width: 315px;">
+              <option value="">
+              </option>
+              <?php include_once 'countries.txt';?>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td align="right">
+            <label>City: *
+            </label>
+          </td>
+          <td align="left">
+            <input required type="text" name="city" placeholder="Enter Your City..." class="text_input" maxlength="50"/>
+          </td>
+        </tr>
+        <tr>
+          <td align="right">
+            <label>State:
+            </label>
+          </td>
+          <td align="left">
+            <input  type="text" name="state" placeholder="Enter Your State..." class="text_input" maxlength="50"/>
+          </td>
+        </tr>
+        <tr>
+          <td align="right">
+            <label>Phone: *
+            </label>
+          </td>
+          <td align="left">
+            <input required type="tel" name="phone" placeholder="Enter Your Phone Number..." class="text_input" maxlength="15"/>
+          </td>
+        </tr>
+        <tr>
+          <td align="right">
+            <label>Email: *
+            </label>
+          </td>
+          <td align="left">
+            <input required type="email" name="email" placeholder="Enter Your Email Address..." class="text_input" maxlength="100"/>
+          </td>
+        </tr>
+        <tr>
+          <td align="right">
+            <label>Password: *
+            </label>
+          </td>
+          <td align="left">
+            <input required type="password" name="password" placeholder="Enter Password..." class="text_input" maxlength="50"/>
+          </td>
+        </tr>
+        <tr>
+          <td align="right">
+            <label>Address: *
+            </label>
+          </td>
+          <td align="left">
+            <Textarea required style="height: 80px; width: 300px;padding: 5px;resize: none;" name="address" placeholder="Enter  Your Address..." class="text_input" >
+              </textarea>
+          </td>
+        </tr>
+        <tr >
+          <td  colspan="2" align="center">
+            <input id="submit" type="submit" value="Create Account"/>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" align="center">
+            <?php echo "<p style='color: white; font-size: 17px;' >" . $msg . "</p>"; ?>
+          </td>
+        </tr>
+      </table>
+      </form>
+  </div>
+</div>
+<div id="footer-push">
+</div>
 <!-- Form Styling-->
 
 <style type="text/css">

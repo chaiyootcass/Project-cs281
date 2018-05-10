@@ -37,17 +37,14 @@ include 'templates/header_top.php';
 <!-- Navigation -->
 <?php
 include 'templates/navigation.php';
-
 ?>
 <!-- END Navigation -->
 <!-- Including Slider... -->
-    <?php
+<?php
 include 'templates/slider.php';
-
 ?>
 <!--slider end -->
 <?php
-
 include_once 'scripts/connect.php';
 $user_id = $_SESSION['id'];
 $sql = "SELECT favorite.id,favorite.products,favorite.user_id,favorite.quantity FROM users JOIN favorite ON users.id=favorite.user_id where users.id='$user_id'";
@@ -66,39 +63,20 @@ if ($query_run = mysqli_query($con, $sql)) {
         $carts = "You have a empty farvorite right now!";
     }
 }
-/*include 'scripts/connect.php';
-$user_id = $_SESSION['id'];
-$sql = "SELECT cart.id,cart.cart,cart.mem_id,cart.quantity,cart.total FROM users JOIN cart ON users.id=cart.mem_id where users.id='$user_id'";
-$cart = array();
-
-$total = 0;
-if ($query_run = mysqli_query($con, $sql)) {
-$row = mysqli_fetch_assoc($query_run);
-$con = mysqli_num_rows($query_run);
-if ($con == 1) {
-$id = $row['id'];
-$mem_id = $row['mem_id'];
-$carts = $row['cart'];
-$total = $row['total'];
-$carts = $carts . "";
-$_SESSION['total'] = $total;
-$cart = explode(",", $carts);
-$_SESSION['quantity'] = count($cart);
-} else {
-$carts = "You have a empty cart right now!";
-}
-}*/
 ?>
-    <head><title>
-            Favorite
-        </title></head>
-        <div id="farvoite" >
-                <div class="label" style="margin-left:0px;margin-top: 510px;">
-                    <h3>Favorite</h3>
-                </div>
-                <div class="cl"></div>
-
-                                <?php
+<head>
+  <title>
+    Favorite
+  </title>
+</head>
+<div id="farvoite" >
+  <div class="label" style="margin-left:0px;margin-top: 510px;">
+    <h3>Favorite
+    </h3>
+  </div>
+  <div class="cl">
+  </div>
+  <?php
 include 'scripts/connect.php';
 $sortedCart = array_count_values($cart);
 foreach ($sortedCart as $value => $count) {
@@ -113,39 +91,53 @@ foreach ($sortedCart as $value => $count) {
             $status = $row['status'];
         }
     }
-
     ?>
-                             <div class="product">
-                            <a  title="Details" href="product.php?id=<?php echo $id; ?>"><img height="152" width="185" id="img" src="products/<?php echo $id ?>.jpg" alt="<?php echo $product_name; ?>" /></a>
-                            <div class="desc">
-                                <p class="name"><?php echo $product_name; ?></p>
-                                <p>Status: <span>
-                       <?php if ($status == 0) {
+  <div class="product">
+    <a  title="Details" href="product.php?id=<?php echo $id; ?>">
+      <img height="152" width="185" id="img" src="products/<?php echo $id ?>.jpg" alt="<?php echo $product_name; ?>" />
+    </a>
+    <div class="desc">
+      <p class="name">
+        <?php echo $product_name; ?>
+      </p>
+      <p>Status:
+        <span>
+          <?php if ($status == 0) {
         echo "UnAvailable";} else {
         echo "Available";
     }?>
-                    </span></p>
-                                <p>Quantity: <span><?php echo $product_quantity ?></span></p>
-                                <p>Product code: <span><?php echo $id ?></span></p>
-                            </div>
-                            <div class="price-box">
-                                <p>Rs.<span class="price">  <?php echo $product_price; ?></span></p>
-                                <p class="per-peace">Per Piece</p>
-                            </div>
-                            <div class="cl"></div>
-                        </div>
-                                    <?php
-
+        </span>
+      </p>
+      <p>Quantity:
+        <span>
+          <?php echo $product_quantity ?>
+        </span>
+      </p>
+      <p>Product code:
+        <span>
+          <?php echo $id ?>
+        </span>
+      </p>
+    </div>
+    <div class="price-box">
+      <p>
+        <span class="price">
+          <?php echo $product_price; ?>
+        </span>
+      </p>
+      <p class="per-peace">Per price
+      </p>
+    </div>
+    <div class="cl">
+    </div>
+  </div>
+  <?php
 }
 ?>
-
-
-            </div>
-
-            <div class="cl"></div>
-
-        </div>
-
-
-    <div id="footer-push"></div>
+</div>
+<div class="cl">
+</div>
+</div>
+<div id="footer-push">
+</div>
 <?php include_once 'templates/footer.php';?>

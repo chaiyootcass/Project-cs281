@@ -42,12 +42,12 @@ if (isset($_POST['msg_name'])) {
     $msg_email = stripslashes($msg_email);
     $msg_subject = stripslashes($msg_subject);
     $msg = stripslashes($msg);
-    $msg_email = mysql_real_escape_string($msg_email);
+    //$msg_email = mysqli_real_escape_string($msg_email);
     if ((!$msg_name) || (!$msg_email) || (!$msg_subject) || (!$msg)) {
         $msg_error = "Please fill all the input data!";
     } else {
         include_once "scripts/connect.php";
-        $sql = mysql_query("INSERT INTO messages(msg_name, msg_email, msg_subject,msg, msg_date) VALUES('$msg_name','$msg_email','$msg_subject','$msg', now())");
+        mysqli_query($con, "INSERT INTO messages(msg_name, msg_email, msg_subject,msg, msg_date) VALUES('$msg_name','$msg_email','$msg_subject','$msg', now())");
         $msg_error = "Message Successfully sent! Thankyou For having interest in our site.<br> You 'll soon receive a response from us";
 
     }

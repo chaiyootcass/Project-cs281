@@ -1,23 +1,16 @@
 <?php
-
 session_start();
-
 if (!isset($_SESSION['id'])) {
     header("location: index.php");
     exit();
 }
 ?>
-
-
 <?php include_once 'templates/header_top.php';?>
-
-    <!-- Navigation -->
+<!-- Navigation -->
 <?php
 include 'templates/navigation.php';
-
 ?>
-    <!-- END Navigation -->
-
+<!-- END Navigation -->
 <?php
 $status_order = "";
 $user_id = $_SESSION['id'];
@@ -28,7 +21,6 @@ if (isset($_POST['mail'])) {
     $total = $_POST['total'];
     $cnic = $_POST['cnic'];
     $verify_code = $_POST['code'];
-
     if ((!$carts)) {
         $status_order = "Sorry! You have an empty cart. Please add some item(s) to your cart!";
     } else {
@@ -37,31 +29,27 @@ if (isset($_POST['mail'])) {
         $sql = mysqli_query($con, "delete from cart where mem_id='$user_id'");
         $status_order = "Order Successfully placed!";
     }
-
 }
 ?>
-
-    <!-- Including Slider... -->
-        <?php
+<!-- Including Slider... -->
+<?php
 include 'templates/slider.php';
-
 ?>
-    <!--slider end -->
-
-    <div id="content">
-        <div class="products-holder" style="background: rgba(0,0,0,.4); border-radius: 10px; width: 990px; margin: 0 auto;">
-
-            <div class="middle"style="background: transparent">
-                <div class="label">
-                    <h3>Order Status</h3>
-                </div>
-                <div class="cl"></div>
-
-                <p style="margin-top: 15px; color: #ffffff;font-size: 16px; font-style: italic;">
-                <?php echo $status_order; ?>
-                </p>
-            </div>
-
-        </div>
+<!--slider end -->
+<div id="content">
+  <div class="products-holder" style="background: rgba(0,0,0,.4); border-radius: 10px; width: 990px; margin: 0 auto;">
+    <div class="middle"style="background: transparent">
+      <div class="label">
+        <h3>Order Status
+        </h3>
+      </div>
+      <div class="cl">
+      </div>
+      <p style="margin-top: 15px; color: #ffffff;font-size: 16px; font-style: italic;">
+        <?php echo $status_order; ?>
+      </p>
     </div>
-    <div id="footer-push"></div>
+  </div>
+</div>
+<div id="footer-push">
+</div>

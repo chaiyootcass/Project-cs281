@@ -8,7 +8,7 @@ if (isset($_POST['search_item'])) {
     }
     ?>
 <table cellspacing="0" width="100%">
-<?php
+  <?php
 include_once "scripts/connect.php";
     if ($query_run = mysqli_query($con, $sql)) {
         while ($row = mysqli_fetch_assoc($query_run)) {
@@ -19,8 +19,6 @@ include_once "scripts/connect.php";
             $product_quantity = $row['quantity'];
             $status = $row['status'];
             echo "
-
-
 <tr style='padding-left: 10px;'>
 <td align='center' >
 <a style='padding-bottom: 10px; text-decoration: none; color: #fff;' title='Details' href='product.php?id=$id'><img style='border-radius: 10px;' height='50' width='50' src='products/$id.jpg'/></a>
@@ -29,7 +27,6 @@ include_once "scripts/connect.php";
 <a style='padding-bottom: 10px; text-decoration: none; color: #fff;' title='Details' href='product.php?id=$id'>$product_name</a>
 </td>
 </tr>
-
 ";
         }
     }

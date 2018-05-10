@@ -126,7 +126,6 @@ if (isset($_POST['product_name'])) {
         </form>
     </section>
 
-    <?php include_once '../templates/admin_footer.php';?>
 
 </div>
 

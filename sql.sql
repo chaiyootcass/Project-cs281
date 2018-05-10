@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 29, 2018 at 09:06 AM
+-- Generation Time: May 10, 2018 at 04:09 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -40,7 +40,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `password`, `last_log`) VALUES
-(1, 'gas', 'e10adc3949ba59abbe56e057f20f883e', '2018-04-19 20:04:32');
+(1, 'gas', 'e10adc3949ba59abbe56e057f20f883e', '2018-05-10 20:57:16');
 
 -- --------------------------------------------------------
 
@@ -56,6 +56,34 @@ CREATE TABLE `cart` (
   `quantity` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`id`, `mem_id`, `cart`, `total`, `quantity`) VALUES
+(2, 13, '43', '40', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `favorite`
+--
+
+CREATE TABLE `favorite` (
+  `id` int(11) NOT NULL,
+  `products` text NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `quantity` int(10) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `favorite`
+--
+
+INSERT INTO `favorite` (`id`, `products`, `user_id`, `quantity`) VALUES
+(10, '44,44', 11, 2),
+(11, '41,44', 13, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -70,6 +98,13 @@ CREATE TABLE `messages` (
   `msg` mediumtext NOT NULL,
   `msg_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `messages`
+--
+
+INSERT INTO `messages` (`id`, `msg_name`, `msg_email`, `msg_subject`, `msg`, `msg_date`) VALUES
+(1, 'fasdasd', 'dqwdqw@adsd.c', 'awdawd', 'awdawdawdawd', '2018-05-10');
 
 -- --------------------------------------------------------
 
@@ -95,7 +130,9 @@ CREATE TABLE `orders` (
 
 INSERT INTO `orders` (`id`, `email`, `phone_number`, `CNIC_number`, `verify_code`, `products`, `user_id`, `paid_amount`, `status`) VALUES
 (13, 'abc@adwdc.com', '03999999', '12345612313232', 1234, '41,41,42,42,44,44', 11, 7360, '0'),
-(14, 'wqeqwe@weqwe.com', '131303213', '12312313213', 1234, '42,41', 11, 71, '0');
+(14, 'wqeqwe@weqwe.com', '131303213', '12312313213', 1234, '42,41', 11, 71, '0'),
+(15, 'awdawd@dawdawd.com', '0656465460', '13132131321', 1234, '42', 11, 32, '0'),
+(16, 'ggggg@ggggg.g', '0123456789', '123412341234123', 1234, '42,42,42,41,43', 11, 175, '1');
 
 -- --------------------------------------------------------
 
@@ -120,11 +157,12 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `name`, `description`, `price`, `quantity`, `status`, `date_added`, `category`, `sales`) VALUES
-(41, 'Blue Shirt', 'Color: Blue \r\nSize: L\r\n\r\n-100% Cotton\r\n\r\n-Imported\r\n\r\n-Machine wash\r\n\r\n-This classic, versatile shirt provides a clean, buttoned-up \r\nlook with a special wash for a soft feel and maximum comfort\r\n\r\n-Model is 6\'1\" and wearing a size Medium\r\n\r\n-Slim fit: closer-fitting in the chest, slightly tapered \r\nthrough the waist for a tailored look\r\n\r\n-Our Slim Fit is comparable to slim-fit shirts from J.Crew \r\nand Banana Republic; if you like the fit of Van Heusen \r\nbrand shirts, size up\r\n', '39', 97, '1', '2018-04-19 20:16:51', 'shirts', 3),
-(42, 'Men\'s Blackbird', 'Color: Black \r\nSize: L\r\n\r\n-100% Cotton\r\n\r\n-Imported\r\n\r\n-Pull On closure\r\n\r\n-Machine Wash\r\n\r\n-Contrast trefoil logo graphic on front\r\n\r\n-Regular fit\r\n\r\n-Crewneck', '32', 78, '1', '2018-04-19 20:18:09', 'shirts', 2),
-(43, 'Dress Chino Pant', 'Color: Olive\r\nSize: 30W x 29L\r\n\r\n-98% Cotton, 2% Spandex\r\n\r\n-Imported\r\n\r\n-Machine Wash\r\n\r\n-A classic dress chino in a modern straight fit, \r\nthis non-iron Goodthreads trouser is as easy to \r\ncare for as it is stylish to wear\r\n\r\n-Wrinkle-free, easy-care flat front dress chino \r\nin cotton stretch twill with besom button-through back pockets\r\n\r\n-Sits at waist; zip fly with button closure\r\n\r\n-Model is 6\'1\" and wearing a size 32 x 32\r\n\r\n-If you like J.Crew or Banana Republic pants, \r\ncheck out Goodthreads’ selection of effortlessly stylish pants', '40', 111, '1', '2018-04-19 20:19:42', 'pants', 0),
+(41, 'Blue Shirt', 'Color: Blue \r\nSize: L\r\n\r\n-100% Cotton\r\n\r\n-Imported\r\n\r\n-Machine wash\r\n\r\n-This classic, versatile shirt provides a clean, buttoned-up \r\nlook with a special wash for a soft feel and maximum comfort\r\n\r\n-Model is 6\'1\" and wearing a size Medium\r\n\r\n-Slim fit: closer-fitting in the chest, slightly tapered \r\nthrough the waist for a tailored look\r\n\r\n-Our Slim Fit is comparable to slim-fit shirts from J.Crew \r\nand Banana Republic; if you like the fit of Van Heusen \r\nbrand shirts, size up\r\n', '39', 96, '1', '2018-04-19 20:16:51', 'shirts', 4),
+(42, 'Men\'s Blackbird', 'Color: Black \r\nSize: L\r\n\r\n-100% Cotton\r\n\r\n-Imported\r\n\r\n-Pull On closure\r\n\r\n-Machine Wash\r\n\r\n-Contrast trefoil logo graphic on front\r\n\r\n-Regular fit\r\n\r\n-Crewneck', '32', 76, '1', '2018-04-19 20:18:09', 'shirts', 4),
+(43, 'Dress Chino Pant', 'Color: Olive\r\nSize: 30W x 29L\r\n\r\n-98% Cotton, 2% Spandex\r\n\r\n-Imported\r\n\r\n-Machine Wash\r\n\r\n-A classic dress chino in a modern straight fit, \r\nthis non-iron Goodthreads trouser is as easy to \r\ncare for as it is stylish to wear\r\n\r\n-Wrinkle-free, easy-care flat front dress chino \r\nin cotton stretch twill with besom button-through back pockets\r\n\r\n-Sits at waist; zip fly with button closure\r\n\r\n-Model is 6\'1\" and wearing a size 32 x 32\r\n\r\n-If you like J.Crew or Banana Republic pants, \r\ncheck out Goodthreads’ selection of effortlessly stylish pants', '40', 110, '1', '2018-04-19 20:19:42', 'pants', 1),
 (44, 'Polo Shirt', 'Color: White\r\nSize: L\r\n\r\n-100% Cotton\r\n-Embroidered Pony Logo\r\n-Slim Fit\r\n-Ribbed Foldover Collar\r\n-Two-button placket\r\n-Pique Cotton', '35.99', 78, '1', '2018-04-20 12:34:10', 'shirts', 2),
-(45, 'Assist Short', 'Color: Black\r\nSize: M\r\n-100% Polyester\r\n-Durable, soft hand mesh short provides superior ventilation.\r\n-Perfect for all team activities.\r\n-Color blocked side panels.\r\n-Open hand pockets.\r\n-10\" inseam.', '24', 70, '1', '2018-04-20 12:40:19', 'pants', 0);
+(45, 'Assist Short', 'Color: Black\r\nSize: M\r\n-100% Polyester\r\n-Durable, soft hand mesh short provides superior ventilation.\r\n-Perfect for all team activities.\r\n-Color blocked side panels.\r\n-Open hand pockets.\r\n-10\" inseam.', '24', 70, '1', '2018-04-20 12:40:19', 'pants', 0),
+(47, 'shirt', 'ljkl', '123', 100, '1', '2018-05-10 16:35:44', 'shirts', 0);
 
 -- --------------------------------------------------------
 
@@ -167,8 +205,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `full_name`, `country`, `city`, `state`, `phone`, `email`, `password`, `address`, `ip`, `last_log`, `signup`, `activated`) VALUES
-(11, 'peerapong chirdchaweewan', 'Thailand', 'Kanchanaburi', '', '0916081055', 'gggg@gggg.g', 'e10adc3949ba59abbe56e057f20f883e', 'wdawddiweqwe', '::1', '0000-00-00 00:00:00', '2018-04-18', '0'),
-(12, 'Gas Peerapong', 'Thailand', 'Kanchanaburi', '', '0123456789', 'admin@admin.com', 'e10adc3949ba59abbe56e057f20f883e', 'wqdqwdqwdqwdqwqwfqwf', '::1', '0000-00-00 00:00:00', '2018-04-18', '0');
+(11, 'peerapong chirdchaweewan', 'Thailand', 'Kanchanaburi', '', '0916081055', 'gggg@gggg.g', 'e10adc3949ba59abbe56e057f20f883e', 'wdawddiweqwe', '::1', '2018-05-10 21:09:20', '2018-04-18', '1'),
+(12, 'Gas Peerapong', 'Thailand', 'Kanchanaburi', '', '0123456789', 'admin@admin.com', 'e10adc3949ba59abbe56e057f20f883e', 'wqdqwdqwdqwdqwqwfqwf', '::1', '2018-05-08 06:00:00', '2018-04-18', '0'),
+(13, 'gasdqwodk qwd', 'Algeria', 'qwdqwkflqjkfw', '', '0916081059', 'zxc@zxc.zxc', 'e10adc3949ba59abbe56e057f20f883e', 'zxckjqsdqwdijwqd', '::1', '2018-05-10 16:04:35', '2018-05-09', '0'),
+(17, 'qweqweqwrqwrqwr', 'Bangladesh', 'qwrqwrqwerqwer', 'wqefwqefqwefqwer', '03916066666', 'qqq@qqq.q', 'e10adc3949ba59abbe56e057f20f883e', 'qweqweqweqwvqewvqwev', '::1', '0000-00-00 00:00:00', '2018-05-10', '0');
 
 --
 -- Indexes for dumped tables
@@ -186,6 +226,13 @@ ALTER TABLE `admins`
 ALTER TABLE `cart`
   ADD PRIMARY KEY (`id`),
   ADD KEY `mem_id` (`mem_id`);
+
+--
+-- Indexes for table `favorite`
+--
+ALTER TABLE `favorite`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `messages`
@@ -234,25 +281,31 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `favorite`
+--
+ALTER TABLE `favorite`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `reviews`
@@ -264,7 +317,7 @@ ALTER TABLE `reviews`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Constraints for dumped tables
