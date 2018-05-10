@@ -124,10 +124,6 @@ $i++;
         </table>
     </div>
 
-
-    <?php include_once '../templates/admin_footer.php';?>
-
-
 </div>
 
 

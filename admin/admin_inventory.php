@@ -87,7 +87,7 @@ if ($query_run = mysqli_query(mysqli_connect("localhost", "root", "", "cd"), $sq
 
 </div>
 <!-- END Content -->
-    <?php include_once '../templates/admin_footer.php';?>
+
 </div>
 
 
