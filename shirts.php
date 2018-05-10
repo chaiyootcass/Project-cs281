@@ -62,7 +62,6 @@ if ($query_run = mysqli_query($con, $sql)) {
             echo "UnAvailable";} else {
             echo "Available";
         }?>
-<<<<<<< HEAD
             </span>
           </p>
           <p>Quantity:
@@ -89,21 +88,6 @@ if ($query_run = mysqli_query($con, $sql)) {
         </div>
       </div>
       <?php }
-=======
-                    </span></p>
-                            <p>Quantity: <span><?php echo $product_quantity ?></span></p>
-                            <p>Product code: <span><?php echo $id ?></span></p>
-                        </div>
-                        <div class="price-box">
-                            <p><span class="price">  <?php echo $product_price; ?></span></p>
-                            <p class="per-peace">Per Price</p>
-                        </div>
-                        <div class="cl"></div>
-                    </div>
-
-
-                <?php }
->>>>>>> 8f30263e1b8c3a4def74d8f41c9ffd6feec260cc
 }
 ?>
       <div class="cl">

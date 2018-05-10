@@ -130,15 +130,7 @@ $sortedCart = array_count_values($cart);
         </table>
       </div>
     </div>
-<<<<<<< HEAD
   </body>
-=======
-
-</div>
-
-
-</body>
->>>>>>> 8f30263e1b8c3a4def74d8f41c9ffd6feec260cc
 </html>
 <style type="text/css">
   .messages{

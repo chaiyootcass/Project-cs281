@@ -106,17 +106,4 @@ if ($query_run = mysqli_query(mysqli_connect("localhost", "root", "", "cd"), $sq
     </div>
     <!-- END Content -->
     </div>
-<<<<<<< HEAD
   </body>
-=======
-</div>
-<!-- END Featured Products -->
-
-</div>
-<!-- END Content -->
-
-</div>
-
-
-</body>
->>>>>>> 8f30263e1b8c3a4def74d8f41c9ffd6feec260cc

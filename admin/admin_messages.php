@@ -77,24 +77,11 @@ $i++;
             <?php
 }
 }?>
-<<<<<<< HEAD
           </tbody>
         </table>
       </div>
     </div>
   </body>
-=======
-        </tbody>
-            </table>
-        </div>
-
-    
-
-</div>
-
-
-</body>
->>>>>>> 8f30263e1b8c3a4def74d8f41c9ffd6feec260cc
 </html>
 <style type="text/css">
   .messages{
