@@ -56,6 +56,15 @@ if ($query_run = mysqli_query($con, $sql)) {
         $products = $row['products'];
         $verify_code = $row['verify_code'];
         $paid_amount = $row['paid_amount'];
+        if($paid_amount>=499)
+        {
+            $paid_amount *= 1.07;
+        }
+        if($paid_amount<499)
+        {
+            $paid_amount *= 1.07;
+            $paid_amount += 50 ;
+        }
         $order_status = $row['status'];
         $cart = explode(",", $products);
         ?>
