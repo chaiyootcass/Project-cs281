@@ -17,8 +17,9 @@ $phone = "";
 $email = "";
 $password = "";
 $address = "";
-$ip = "";
+$ipaddress = '';
 $msg = "";
+$ip = "";
 if (isset($_POST['full_name'])) {
     $full_name = $_POST['full_name'];
     $country = $_POST['country'];
@@ -68,7 +69,7 @@ if (isset($_POST['full_name'])) {
             $msg .= "That email address is already been taken.<br/>";
         } else {
             $password = md5($password);
-            $ip = $_SERVER['REMOTE_ADDR'];
+            $ip = getenv('HTTP_CLIENT_IP');
             $sql = mysqli_query($con, "INSERT INTO users(full_name, country, city, state, phone, email, password, address, ip, signup) VALUES('$full_name','$country','$city','$state','$phone','$email','$password','$address','$ip',now())");
             header("location: success_register.php");
             exit();

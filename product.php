@@ -76,7 +76,7 @@ if ($query_run = mysqli_query($con, $sql)) {
 
                     <table class="table" >
                         <tr>
-                            <td style="padding-left:800px; " colspan="2" >Price: <?php echo " Rs " . $product_price; ?></td>
+                            <td style="padding-left:800px; " colspan="2" >Price: <?php echo $product_price; ?></td>
                         </tr>
                         <tbody>
                         <tr style="margin-bottom: 1px;">
@@ -99,6 +99,13 @@ if ($query_run = mysqli_query($con, $sql)) {
     ?>
                                 <input  type="submit" id="cart_btn" value="Add to cart"/>
                                 <?php }?>
+                            </form>
+                            <form action="favorite.php" method="post" >
+
+                                <input type="hidden" name="product_id" value="<?php echo $id ?>"/>
+                                <input type="hidden" name="product_quantity" value="<?php echo $product_quantity; ?>"/>
+                                <input  type="submit" id="cart_btn" value="Add to favorite"/>
+
                             </form>
                             </td>
                         </tr>
@@ -191,10 +198,7 @@ if (isset($_SESSION['id'])) {
 }
 ?>
         <tr>
-            <td><?php if (!isset($_SESSION['id'])) {
-    echo "<h3>(Note: Please login to write a review!)</h3>";
-}
-?>
+            <td>
                 <br/>
             </td>
         </tr>

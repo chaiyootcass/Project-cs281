@@ -69,7 +69,7 @@ if ($query_run = mysqli_query($con, $sql)) {
                         </div>
                         <div class="price-box">
                             <p><span class="price">  <?php echo $product_price; ?></span></p>
-                            <p class="per-peace">Per Peace</p>
+                            <p class="per-peace">Per Price</p>
                         </div>
                         <div class="cl"></div>
                     </div>

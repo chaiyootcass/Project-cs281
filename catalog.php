@@ -65,8 +65,8 @@ $sql = "SELECT * FROM `product` ";
                                 <p>Product code: <span><?php echo $id ?></span></p>
                             </div>
                             <div class="price-box">
-                                <p>Rs.<span class="price">  <?php echo $product_price; ?></span></p>
-                                <p class="per-peace">Per Peace</p>
+                                <p><span class="price">  <?php echo $product_price; ?></span></p>
+                                <p class="per-peace">Per Price</p>
                             </div>
                             <div class="cl"></div>
                         </div>

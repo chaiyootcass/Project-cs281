@@ -14,7 +14,17 @@ $msg_error = "";
 $s_id = "";
 $msg = "";
 $count = 0;
-
+function getRealUserIp()
+{
+    if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+        $ip = $_SERVER['HTTP_CLIENT_IP'];
+    } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+        $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    } else {
+        $ip = $_SERVER['REMOTE_ADDR'];
+    }
+    return $ip;
+}
 if (isset($_POST['email'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -25,8 +35,11 @@ if (isset($_POST['email'])) {
         //$email = mysql_real_escape_string($email);
         $password = md5($password);
         include 'scripts/connect.php';
+        date_default_timezone_set("Asia/Bangkok");
+        $ipaddress = getRealUserIp();
+        $mysql_date_now = date("Y-m-d H:i:s");
+        mysqli_query($con, "UPDATE `users` SET `activated` = '1',`last_log`='$mysql_date_now',`ip`='$ipaddress' WHERE email='$email'");
         $sql = "SELECT * FROM `users`where email='$email' and password='$password'";
-
         if ($query_run = mysqli_query($con, $sql)) {
             while ($row = mysqli_fetch_assoc($query_run)) {
                 $s_id = $row['id'];
@@ -109,7 +122,7 @@ if ($query_run = mysqli_query($con, $sql)) {
                                             </div>
                                             <div class="price-box">
                                                 <p><span class="price">  <?php echo $product_price; ?></span></p>
-                                                <p class="per-peace">Per Peace</p>
+                                                <p class="per-peace">Per Price</p>
                                             </div>
                                             <div class="cl"></div>
                                         </div>

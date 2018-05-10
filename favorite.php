@@ -66,28 +66,7 @@ if ($query_run = mysqli_query($con, $sql)) {
         $carts = "You have a empty farvorite right now!";
     }
 }
-/*include 'scripts/connect.php';
-$user_id = $_SESSION['id'];
-$sql = "SELECT cart.id,cart.cart,cart.mem_id,cart.quantity,cart.total FROM users JOIN cart ON users.id=cart.mem_id where users.id='$user_id'";
-$cart = array();
 
-$total = 0;
-if ($query_run = mysqli_query($con, $sql)) {
-$row = mysqli_fetch_assoc($query_run);
-$con = mysqli_num_rows($query_run);
-if ($con == 1) {
-$id = $row['id'];
-$mem_id = $row['mem_id'];
-$carts = $row['cart'];
-$total = $row['total'];
-$carts = $carts . "";
-$_SESSION['total'] = $total;
-$cart = explode(",", $carts);
-$_SESSION['quantity'] = count($cart);
-} else {
-$carts = "You have a empty cart right now!";
-}
-}*/
 ?>
     <head><title>
             Favorite
@@ -129,7 +108,7 @@ foreach ($sortedCart as $value => $count) {
                                 <p>Product code: <span><?php echo $id ?></span></p>
                             </div>
                             <div class="price-box">
-                                <p>Rs.<span class="price">  <?php echo $product_price; ?></span></p>
+                                <p><span class="price">  <?php echo $product_price; ?></span></p>
                                 <p class="per-peace">Per Piece</p>
                             </div>
                             <div class="cl"></div>
