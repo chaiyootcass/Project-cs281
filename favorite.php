@@ -63,6 +63,10 @@ if ($query_run = mysqli_query($con, $sql)) {
         $carts = "You have a empty farvorite right now!";
     }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8f30263e1b8c3a4def74d8f41c9ffd6feec260cc
 ?>
 <head>
   <title>
@@ -106,6 +110,7 @@ foreach ($sortedCart as $value => $count) {
         echo "UnAvailable";} else {
         echo "Available";
     }?>
+<<<<<<< HEAD
         </span>
       </p>
       <p>Quantity:
@@ -132,6 +137,20 @@ foreach ($sortedCart as $value => $count) {
     </div>
   </div>
   <?php
+=======
+                    </span></p>
+                                <p>Quantity: <span><?php echo $product_quantity ?></span></p>
+                                <p>Product code: <span><?php echo $id ?></span></p>
+                            </div>
+                            <div class="price-box">
+                                <p><span class="price">  <?php echo $product_price; ?></span></p>
+                                <p class="per-peace">Per Piece</p>
+                            </div>
+                            <div class="cl"></div>
+                        </div>
+                                    <?php
+
+>>>>>>> 8f30263e1b8c3a4def74d8f41c9ffd6feec260cc
 }
 ?>
 </div>

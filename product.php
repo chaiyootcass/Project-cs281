@@ -52,6 +52,7 @@ if ($query_run = mysqli_query($con, $sql)) {
     </h3>
     <?php } else {
     ?>
+<<<<<<< HEAD
     <h3>
       <?php echo $product_name; ?>
     </h3>
@@ -106,6 +107,61 @@ if ($query_run = mysqli_query($con, $sql)) {
 <br/>
 <br/>
 <br/>
+=======
+                        <h3><?php echo $product_name; ?></h3>
+                <?php }?>
+                </div>
+                <div class="cl"></div>
+                <br/>
+
+                    <table class="table" >
+                        <tr>
+                            <td style="padding-left:800px; " colspan="2" >Price: <?php echo $product_price; ?></td>
+                        </tr>
+                        <tbody>
+                        <tr style="margin-bottom: 1px;">
+                            <td><?php echo $product_description; ?></td>
+                            <td><img height="200" width="200" style="float:right; margin-bottom: 1px; border-radius: 10px;" src="products/<?php echo $id ?>.jpg" alt="<?php echo $product_name; ?>"/></td>
+                        </tr>
+
+                        <tr style="padding: 0px;">
+                            <td> </td>
+                            <td colspan= align="right">
+                            <form action="add_to_cart.php" method="post" >
+
+                                <input type="hidden" name="product_id" value="<?php echo $id ?>"/>
+                                <input type="hidden" name="product_price" value="<?php echo $product_price; ?>"/>
+                                <input type="hidden" name="product_quantity" value="<?php echo $product_quantity; ?>"/>
+                                <input type="hidden" name="sales" value="<?php echo $sales; ?>"/>
+                                <?php if ($status == 0) {?>
+                                <input  disabled="disabled" type="submit" id="cart_btn" value="Add to cart"/>
+                               <?php } else {
+    ?>
+                                <input  type="submit" id="cart_btn" value="Add to cart"/>
+                                <?php }?>
+                            </form>
+                            <form action="favorite.php" method="post" >
+
+                                <input type="hidden" name="product_id" value="<?php echo $id ?>"/>
+                                <input type="hidden" name="product_quantity" value="<?php echo $product_quantity; ?>"/>
+                                <input  type="submit" id="cart_btn" value="Add to favorite"/>
+
+                            </form>
+                            </td>
+                        </tr>
+
+
+                        </tbody>
+                    </table>
+
+
+                <div class="cl"></div>
+            </div>
+
+
+<br/><br/><br/>
+
+>>>>>>> 8f30263e1b8c3a4def74d8f41c9ffd6feec260cc
 <div class="middle">
   <div class="label" style="top:830px; left:0px; padding-bottom: 20px;">
     <h3>Reviews on Product
@@ -168,6 +224,7 @@ if ($con == 0) {
     <?php
 if (isset($_SESSION['id'])) {
     ?>
+<<<<<<< HEAD
     <form action="review.php" method="post">
       <tr>
         <td>
@@ -195,5 +252,36 @@ if (isset($_SESSION['id'])) {
   </div>
 </div>
 <div id="footer-push">
+=======
+            <form action="review.php" method="post">
+            <tr>
+                <td>
+
+                        <textarea name="review" id="review" cols="60" rows="10"></textarea>
+                    <input type="hidden" name="p_id" value="<?php echo $id; ?>"/>
+                    </td>
+
+            </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="submit" value="Add a Review" id="btn"/>
+                    </td>
+                </tr>
+
+            </form>
+        <?php
+
+}
+?>
+        <tr>
+            <td>
+                <br/>
+            </td>
+        </tr>
+    </table>
+
+
+    <div class="cl"></div>
+>>>>>>> 8f30263e1b8c3a4def74d8f41c9ffd6feec260cc
 </div>
 <?php include_once 'templates/footer.php';?>
