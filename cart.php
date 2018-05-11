@@ -117,10 +117,30 @@ foreach ($sortedCart as $value => $count) {
           </td>
           <td  align="center"  style="color:#026a84; margin-right: 10px;">
             <?php
+$shipping = 0;
+$vat = $total*0.07;
+
 if ($total == 0) {
     echo "<h2 style='color: white; padding: 20px;'>" . $carts . "</h2>";
 } else {
-    echo $total;
+  echo "sub-total =" . $total . "<br>";
+  if($total >= 499)
+  {
+  $shipping = 0;
+  }
+  else
+  {
+  $shipping = 50;
+  }
+  $sum = $total+$vat+$shipping;
+  //echo "vat (7%)  =" . $vat . "<br>";
+ //echo "vat (7%)  =" number_format($vat, 2, '.', '');
+  echo "vat (7%) =";
+  echo number_format($vat, 2, '.', '');
+  echo "<br>";
+  echo "Shipping  =" . $shipping . "<br>";
+  echo "total     =";
+  echo  number_format($sum, 2, '.', '');
 }
 ?>
           </td>
