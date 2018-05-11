@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 10, 2018 at 04:09 PM
+-- Generation Time: May 11, 2018 at 08:43 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -40,7 +40,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `password`, `last_log`) VALUES
-(1, 'gas', 'e10adc3949ba59abbe56e057f20f883e', '2018-05-10 20:57:16');
+(1, 'gas', 'e10adc3949ba59abbe56e057f20f883e', '2018-05-12 01:17:57');
 
 -- --------------------------------------------------------
 
@@ -61,7 +61,8 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id`, `mem_id`, `cart`, `total`, `quantity`) VALUES
-(2, 13, '43', '40', 1);
+(2, 13, '43', '40', 1),
+(3, 11, '41,42,42', '103', 3);
 
 -- --------------------------------------------------------
 
@@ -81,7 +82,7 @@ CREATE TABLE `favorite` (
 --
 
 INSERT INTO `favorite` (`id`, `products`, `user_id`, `quantity`) VALUES
-(10, '44,44', 11, 2),
+(10, '44,44,45', 11, 3),
 (11, '41,44', 13, 2);
 
 -- --------------------------------------------------------
@@ -137,6 +138,31 @@ INSERT INTO `orders` (`id`, `email`, `phone_number`, `CNIC_number`, `verify_code
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `ordersbid`
+--
+
+CREATE TABLE `ordersbid` (
+  `OrderId` int(11) NOT NULL,
+  `BuyerUsr` varchar(30) NOT NULL,
+  `SellerUsr` varchar(30) NOT NULL,
+  `Amount` float NOT NULL,
+  `Address` varchar(100) NOT NULL,
+  `productId` int(11) NOT NULL,
+  `Quantity` int(11) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `ordersbid`
+--
+
+INSERT INTO `ordersbid` (`OrderId`, `BuyerUsr`, `SellerUsr`, `Amount`, `Address`, `productId`, `Quantity`, `status`) VALUES
+(1, 'peerapong chirdchaweewan', 'gas', 200, 'testtttt', 1, 1, 0),
+(2, 'peerapong chirdchaweewan', 'gas', 300, 'testt', 1, 1, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `product`
 --
 
@@ -158,11 +184,36 @@ CREATE TABLE `product` (
 
 INSERT INTO `product` (`id`, `name`, `description`, `price`, `quantity`, `status`, `date_added`, `category`, `sales`) VALUES
 (41, 'Blue Shirt', 'Color: Blue \r\nSize: L\r\n\r\n-100% Cotton\r\n\r\n-Imported\r\n\r\n-Machine wash\r\n\r\n-This classic, versatile shirt provides a clean, buttoned-up \r\nlook with a special wash for a soft feel and maximum comfort\r\n\r\n-Model is 6\'1\" and wearing a size Medium\r\n\r\n-Slim fit: closer-fitting in the chest, slightly tapered \r\nthrough the waist for a tailored look\r\n\r\n-Our Slim Fit is comparable to slim-fit shirts from J.Crew \r\nand Banana Republic; if you like the fit of Van Heusen \r\nbrand shirts, size up\r\n', '39', 96, '1', '2018-04-19 20:16:51', 'shirts', 4),
-(42, 'Men\'s Blackbird', 'Color: Black \r\nSize: L\r\n\r\n-100% Cotton\r\n\r\n-Imported\r\n\r\n-Pull On closure\r\n\r\n-Machine Wash\r\n\r\n-Contrast trefoil logo graphic on front\r\n\r\n-Regular fit\r\n\r\n-Crewneck', '32', 76, '1', '2018-04-19 20:18:09', 'shirts', 4),
+(42, 'Men\'s Blackbird', 'Color: Black \r\nSize: L\r\n\r\n-100% Cotton\r\n\r\n-Imported\r\n\r\n-Pull On closure\r\n\r\n-Machine Wash\r\n\r\n-Contrast trefoil logo graphic on front\r\n\r\n-Regular fit\r\n\r\n-Crewneck', '32', 75, '1', '2018-04-19 20:18:09', 'shirts', 5),
 (43, 'Dress Chino Pant', 'Color: Olive\r\nSize: 30W x 29L\r\n\r\n-98% Cotton, 2% Spandex\r\n\r\n-Imported\r\n\r\n-Machine Wash\r\n\r\n-A classic dress chino in a modern straight fit, \r\nthis non-iron Goodthreads trouser is as easy to \r\ncare for as it is stylish to wear\r\n\r\n-Wrinkle-free, easy-care flat front dress chino \r\nin cotton stretch twill with besom button-through back pockets\r\n\r\n-Sits at waist; zip fly with button closure\r\n\r\n-Model is 6\'1\" and wearing a size 32 x 32\r\n\r\n-If you like J.Crew or Banana Republic pants, \r\ncheck out Goodthreads’ selection of effortlessly stylish pants', '40', 110, '1', '2018-04-19 20:19:42', 'pants', 1),
 (44, 'Polo Shirt', 'Color: White\r\nSize: L\r\n\r\n-100% Cotton\r\n-Embroidered Pony Logo\r\n-Slim Fit\r\n-Ribbed Foldover Collar\r\n-Two-button placket\r\n-Pique Cotton', '35.99', 78, '1', '2018-04-20 12:34:10', 'shirts', 2),
 (45, 'Assist Short', 'Color: Black\r\nSize: M\r\n-100% Polyester\r\n-Durable, soft hand mesh short provides superior ventilation.\r\n-Perfect for all team activities.\r\n-Color blocked side panels.\r\n-Open hand pockets.\r\n-10\" inseam.', '24', 70, '1', '2018-04-20 12:40:19', 'pants', 0),
 (47, 'shirt', 'ljkl', '123', 100, '1', '2018-05-10 16:35:44', 'shirts', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `productbid`
+--
+
+CREATE TABLE `productbid` (
+  `productId` int(11) NOT NULL,
+  `productName` varchar(30) NOT NULL,
+  `maxbid` float NOT NULL,
+  `minbid` float NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `sellerUsr` varchar(30) NOT NULL,
+  `descp` varchar(150) NOT NULL,
+  `currBid` float NOT NULL,
+  `expiry` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `productbid`
+--
+
+INSERT INTO `productbid` (`productId`, `productName`, `maxbid`, `minbid`, `quantity`, `sellerUsr`, `descp`, `currBid`, `expiry`) VALUES
+(1, 'test1', 10299, 9999, 8, 'gas', 'testt', 0, '2018-05-14');
 
 -- --------------------------------------------------------
 
@@ -205,7 +256,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `full_name`, `country`, `city`, `state`, `phone`, `email`, `password`, `address`, `ip`, `last_log`, `signup`, `activated`) VALUES
-(11, 'peerapong chirdchaweewan', 'Thailand', 'Kanchanaburi', '', '0916081055', 'gggg@gggg.g', 'e10adc3949ba59abbe56e057f20f883e', 'wdawddiweqwe', '::1', '2018-05-10 21:09:20', '2018-04-18', '1'),
+(11, 'peerapong chirdchaweewan', 'Thailand', 'Kanchanaburi', '', '0916081055', 'gggg@gggg.g', 'e10adc3949ba59abbe56e057f20f883e', 'wdawddiweqwe', '::1', '2018-05-12 01:43:20', '2018-04-18', '1'),
 (12, 'Gas Peerapong', 'Thailand', 'Kanchanaburi', '', '0123456789', 'admin@admin.com', 'e10adc3949ba59abbe56e057f20f883e', 'wqdqwdqwdqwdqwqwfqwf', '::1', '2018-05-08 06:00:00', '2018-04-18', '0'),
 (13, 'gasdqwodk qwd', 'Algeria', 'qwdqwkflqjkfw', '', '0916081059', 'zxc@zxc.zxc', 'e10adc3949ba59abbe56e057f20f883e', 'zxckjqsdqwdijwqd', '::1', '2018-05-10 16:04:35', '2018-05-09', '0'),
 (17, 'qweqweqwrqwrqwr', 'Bangladesh', 'qwrqwrqwerqwer', 'wqefwqefqwefqwer', '03916066666', 'qqq@qqq.q', 'e10adc3949ba59abbe56e057f20f883e', 'qweqweqweqwvqewvqwev', '::1', '0000-00-00 00:00:00', '2018-05-10', '0');
@@ -248,11 +299,23 @@ ALTER TABLE `orders`
   ADD KEY `user_id` (`user_id`);
 
 --
+-- Indexes for table `ordersbid`
+--
+ALTER TABLE `ordersbid`
+  ADD PRIMARY KEY (`OrderId`);
+
+--
 -- Indexes for table `product`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `name` (`name`);
+
+--
+-- Indexes for table `productbid`
+--
+ALTER TABLE `productbid`
+  ADD PRIMARY KEY (`productId`);
 
 --
 -- Indexes for table `reviews`
@@ -281,7 +344,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `favorite`

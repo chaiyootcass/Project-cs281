@@ -10,10 +10,15 @@
     </a>
     <a href="admin_messages.php">
         <div id="page">Messages</div>
-    </a> 
+    </a>
     <a href="admin_orders.php">
         <div id="page">Orders</div>
     </a>
-
+    <a href="add_product_bid.php">
+        <div id="page">Add Product Bid</div>
+    </a>
+    <a href="admin_productbid.php">
+        <div id="page">Products Bid</div>
+    </a>
 </nav>
 <div id="down_menu"></div>

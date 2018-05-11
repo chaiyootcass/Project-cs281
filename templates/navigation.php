@@ -14,6 +14,7 @@
 } else {
     ?>
             <li><a title="Log out" href="favorite.php">Farvoite</a></li>
+            <li><a title="Log out" href="auction.php">Auction</a></li>
             <li><a title="Log out" href="logout.php">Log Out</a></li>
         <?php
 }

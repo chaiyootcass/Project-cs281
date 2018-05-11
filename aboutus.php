@@ -21,7 +21,6 @@ include 'templates/slider.php';
 ?>
 <!--slider end -->
 
-
 <div id="content">
     <div class="products-holder" style="background: rgba(0,0,0,.4); border-radius: 10px;  width: 950px; margin: 0 auto;">
 
@@ -36,7 +35,6 @@ include 'templates/slider.php';
                 </td>
             </tr>
         </table>
-
     </div>
 
 </div>
