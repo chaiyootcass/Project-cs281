@@ -69,7 +69,7 @@ if ($query_run = mysqli_query($con, $sql)) {
           </td>
         </tr>
         <tr style="color: #ffffff">
-          <th>CNIC No.
+          <th>Visa No.
           </th>
           <th>Email
           </th>
