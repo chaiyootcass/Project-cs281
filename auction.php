@@ -31,12 +31,11 @@ include 'templates/slider.php';
 include 'scripts/connect.php';
 ?>
 <div id="cart" >
-  <div class="label" style="margin-left:0px;margin-top: 510px;">
+  <div class="label" style="margin-left:0px;margin-top: 541px;">
     <h3>Auction
     </h3>
   </div>
-  <div class="cl">
-  </div>
+
   <div id="cart_content">
     <table class="table" width="1000px" cellspacing="0" style="color: #ffffff; margin-top:60px;border-radius:10px; background: rgba(0,0,0,0.4)">
         <form method="POST" action="orderbid.php">

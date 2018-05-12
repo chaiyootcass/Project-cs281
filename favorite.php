@@ -1,6 +1,12 @@
 <?php
 session_start();
 include 'scripts/connect.php';
+if (isset($_POST['del'])) {
+    $mem_id = $_SESSION['id'];
+    $sql = "DELETE FROM `favorite` WHERE `favorite`.`user_id` = '$mem_id' ";
+    mysqli_query($con, $sql);
+    header("location: favorite.php");
+}
 if (isset($_POST['product_id'])) {
     $mem_id = $_SESSION['id'];
     $id = $_POST['product_id'];
@@ -30,6 +36,7 @@ if (isset($_POST['product_id'])) {
         }
     }
 }
+
 ?>
 <?php
 include 'templates/header_top.php';
@@ -66,7 +73,9 @@ if ($query_run = mysqli_query($con, $sql)) {
 ?>
 <head><title>
             Farvoite
-        </title></head>
+        </title>
+        <link rel="stylesheet" href="css/product_style.css"/>
+  </head>
 
     <!-- Content -->
     <div id="content">
@@ -109,13 +118,21 @@ foreach ($sortedCart as $value => $count) {
                                 <p><span class="price">  <?php echo $product_price; ?></span></p>
                                 <p class="per-peace">Per Price</p>
                             </div>
-                            <div class="cl"></div>
+                            <div class="cl">
+                            </div>
+
                         </div>
-
-
                     <?php }
     }
 }
+if ($carts == "You have a empty farvorite right now!") {
+    echo "<h2 style='color: white; padding: 20px;'>" . $carts . "</h2>";
+} else {?>
+    <form action="favorite.php" method="post" style="align:right;">
+        <input type="hidden" name="del" value="<?php echo $id ?>"/>
+        <input  name="submit" type="submit" id="cart_btn" value="Delete all favorite"/>
+    </form>
+<?php }
 ?>
                 <div class="cl">
                 </div>

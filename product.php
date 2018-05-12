@@ -86,8 +86,7 @@ if ($query_run = mysqli_query($con, $sql)) {
             <input type="hidden" name="sales" value="<?php echo $sales; ?>"/>
             <?php if ($status == 0) {?>
             <input  disabled="disabled" type="submit" id="cart_btn" value="Add to cart"/>
-            <?php } else {
-    ?>
+            <?php } else {?>
             <input  type="submit" id="cart_btn" value="Add to cart"/>
             <?php }?>
           </form>
