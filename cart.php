@@ -12,6 +12,39 @@ if (!isset($_SESSION['id'])) {
     header("location: index.php");
     exit();
 }
+if (isset($_POST['cancelcart'])) { 
+
+  $con = mysqli_connect("localhost", "root", "","cd"); 
+  $mem_id = $_SESSION['id']; 
+
+  $sql = "SELECT cart FROM cart WHERE mem_id = '$mem_id'"; 
+  $run_query = mysqli_query($con,$sql); 
+  $data = mysqli_fetch_assoc($run_query); 
+  $data = $data["cart"]; 
+  $token = explode(",",$data); 
+
+  if(!is_array($token)) { 
+    $token = array_push($token,$data); 
+  } 
+
+  foreach ($token as $key){ 
+
+    $sql = "SELECT quantity FROM product WHERE id = '$key'"; 
+    $run_query = mysqli_query($con,$sql); 
+    $qty = mysqli_fetch_assoc($run_query); 
+    $qty = $qty['quantity']; 
+
+    $qty += 1; 
+
+    $sql = "UPDATE product SET quantity = '$qty' WHERE id = '$key'"; 
+    $run_query = mysqli_query($con,$sql); 
+  } 
+
+  $sql = "DELETE FROM cart WHERE mem_id = '$mem_id'"; 
+  $run_query = mysqli_query($con,$sql); 
+
+}
+
 ?>
 <?php
 include 'templates/header_top.php';
@@ -122,7 +155,9 @@ $vat = $total*0.07;
 
 if ($total == 0) {
     echo "<h2 style='color: white; padding: 20px;'>" . $carts . "</h2>";
-} else {
+} else
+{
+
   echo "sub-total =" . $total . "<br>";
   if($total >= 499)
   {
@@ -133,14 +168,13 @@ if ($total == 0) {
   $shipping = 50;
   }
   $sum = $total+$vat+$shipping;
-  //echo "vat (7%)  =" . $vat . "<br>";
- //echo "vat (7%)  =" number_format($vat, 2, '.', '');
   echo "vat (7%) =";
   echo number_format($vat, 2, '.', '');
   echo "<br>";
   echo "Shipping  =" . $shipping . "<br>";
   echo "total     =";
   echo  number_format($sum, 2, '.', '');
+
 }
 ?>
           </td>
@@ -153,6 +187,13 @@ if ($total == 0) {
           <td align="right" colspan="2" style="left: 100px;" >
             <?php
 if ($total != 0) {?>
+            <!-- ยกเลิกรายการทั้งหมด -->
+    <form action="cart.php" method="post">
+    <input type="submit" name="cancelcart" value="CancelCart"/>
+    
+</form>
+
+            <br>
             <form action="checkout.php" method="post">
               <input type="submit" id="checkout" value="Checkout"/>
             </form>
