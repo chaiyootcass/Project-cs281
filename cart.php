@@ -215,3 +215,4 @@ if ($total != 0) {?>
 <div id="footer-push">
 </div>
 <?php include_once 'templates/footer.php';?>
+

@@ -13,8 +13,7 @@ $color = array("active", "success", "info", "warning", "danger");
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Admin Messages
-    </title>
+    <title>Admin Messages</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="style/style.css"/>
   </head>
