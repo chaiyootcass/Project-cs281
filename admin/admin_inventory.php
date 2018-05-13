@@ -86,7 +86,7 @@ if ($query_run = mysqli_query(mysqli_connect("localhost", "root", "", "cd"), $sq
                     </sup>
                   </span>
                 </p>
-                <p class="per-peace">Per Price
+                <p class="per-piece">Per Piece
                 </p>
               </div>
               <div class="cl">
