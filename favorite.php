@@ -72,7 +72,7 @@ if ($query_run = mysqli_query($con, $sql)) {
 }
 ?>
 <head><title>
-            Favorite
+            Farvoite
         </title>
         <link rel="stylesheet" href="css/product_style.css"/>
   </head>
@@ -84,7 +84,7 @@ if ($query_run = mysqli_query($con, $sql)) {
 
             <div class="middle">
                 <div class="label">
-                    <h3>Favorite Products</h3>
+                    <h3>Farvoite Products</h3>
                 </div>
                 <div class="cl"></div>
                 <?php
@@ -116,7 +116,7 @@ foreach ($sortedCart as $value => $count) {
                             </div>
                             <div class="price-box">
                                 <p><span class="price">  <?php echo $product_price; ?></span></p>
-                                <p class="per-peace">Per Price</p>
+                                <p class="per-piece">Per Piece</p>
                             </div>
                             <div class="cl">
                             </div>

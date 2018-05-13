@@ -19,7 +19,7 @@ include 'templates/slider.php';
       <div class="cl">
       </div>
       <p style="margin-top: 15px; color: #ffffff;font-size: 16px; font-style: italic;">
-        Wellcome!!! Your account is almost ready.
+        Welcome!!! Your account is almost ready.
       </p>
     </div>
   </div>
