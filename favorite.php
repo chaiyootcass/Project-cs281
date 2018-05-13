@@ -72,7 +72,7 @@ if ($query_run = mysqli_query($con, $sql)) {
 }
 ?>
 <head><title>
-            Farvoite
+            Favorite
         </title>
         <link rel="stylesheet" href="css/product_style.css"/>
   </head>
@@ -84,7 +84,7 @@ if ($query_run = mysqli_query($con, $sql)) {
 
             <div class="middle">
                 <div class="label">
-                    <h3>Farvoite Products</h3>
+                    <h3>Favorite Products</h3>
                 </div>
                 <div class="cl"></div>
                 <?php
