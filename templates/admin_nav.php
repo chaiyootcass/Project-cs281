@@ -20,8 +20,5 @@
     <a href="admin_productbid.php">
         <div id="page">Products Bid</div>
     </a>
-    <a href="notification.php">
-        <div id="page">Notification</div>
-    </a>
 </nav>
 <div id="down_menu"></div>

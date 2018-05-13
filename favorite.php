@@ -116,7 +116,7 @@ foreach ($sortedCart as $value => $count) {
                             </div>
                             <div class="price-box">
                                 <p><span class="price">  <?php echo $product_price; ?></span></p>
-                                <p class="per-piece">Per Piece</p>
+                                <p class="per-peace">Per Price</p>
                             </div>
                             <div class="cl">
                             </div>

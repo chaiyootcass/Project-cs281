@@ -81,7 +81,7 @@ if ($query_run = mysqli_query($con, $sql)) {
               <?php echo $product_price; ?>
             </span>
           </p>
-          <p class="per-piece">Per Piece
+          <p class="per-peace">Per Price
           </p>
         </div>
         <div class="cl">
