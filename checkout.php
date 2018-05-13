@@ -66,7 +66,7 @@ if ($query_run = mysqli_query($con, $sql)) {
                 <h3>Check Out</h3>
             </div>
             <div class="cl"></div>
-            <form action="order_status.php" method="post" >
+            <form action="fillAddress.php" method="post" >
 
 
                 <div class="cl"></div>

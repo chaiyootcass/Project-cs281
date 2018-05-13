@@ -1,7 +1,7 @@
 <?php
 session_start();
-if (!isset($_SESSION['id'])) {
-    header("location: index.php");
+if (!isset($_SESSION['last_id'])) {
+    header("location: filladdress.php");
     exit();
 }
 ?>
@@ -12,25 +12,23 @@ include 'templates/navigation.php';
 ?>
 <!-- END Navigation -->
 <?php
-$status_order = "";
-$user_id = $_SESSION['id'];
-if (isset($_POST['mail'])) {
-    $email = $_POST['mail'];
+include 'scripts/connect.php';
+$status_order = "WTF";
+$last_id = $_SESSION['last_id'];
+if (isset($_POST['full_name'])) {
+    $full_name = $_POST['full_name'];
+    $country = $_POST['country'];
+    $city = $_POST['city'];
+    $state = $_POST['state'];
     $phone = $_POST['phone'];
-    $carts = $_POST['cart'];
-    $total = $_POST['total'];
-    $cnic = $_POST['cnic'];
-    $verify_code = $_POST['code'];
-    if ((!$carts)) {
-        $status_order = "Sorry! You have an empty cart. Please add some item(s) to your cart!";
-    } else {
-        include_once "scripts/connect.php";
-        $sql = mysqli_query($con, "INSERT INTO orders(email, phone_number, CNIC_number,verify_code, products,user_id,paid_amount) VALUES('$email','$phone','$cnic','$verify_code','$carts','$user_id','$total')");
-        $sql = mysqli_query($con, "delete from cart where mem_id='$user_id'");
-        $status_order = "Order Successfully placed!";
-    }
+    $address = $_POST['address'];
+    $zipcode = $_POST['zipcode'];
+
+include_once "scripts/connect.php";
+  $sql = mysqli_query($con, "UPDATE orders SET full_name='$full_name',country='$country',city='$city',state='$state',phone='$phone',address='$address',zipcode='$zipcode' WHERE id = $last_id");
+    $status_order = "Order Successfully placed!";
 }
-?>
+    ?>
 <!-- Including Slider... -->
 <?php
 include 'templates/slider.php';
@@ -46,7 +44,9 @@ include 'templates/slider.php';
       <div class="cl">
       </div>
       <p style="margin-top: 15px; color: #ffffff;font-size: 16px; font-style: italic;">
-        <?php echo $status_order; ?>
+        <?php echo $status_order;
+
+        ?>
       </p>
     </div>
   </div>
