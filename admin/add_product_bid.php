@@ -1,7 +1,7 @@
 <?php
 session_start();
 $msg = "";
-$name = $_SESSION['name'];
+$name = 'gas';
 if (isset($_POST['submit'])) {
     $Err = 0;
     $idee = $_POST['submit'];

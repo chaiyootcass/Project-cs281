@@ -27,9 +27,6 @@ include 'templates/navigation.php';
 include 'templates/slider.php';
 ?>
 <!--slider end -->
-<?php
-include 'scripts/connect.php';
-?>
 <div id="cart" >
   <div class="label" style="margin-left:0px;margin-top: 541px;">
     <h3>Auction
@@ -54,6 +51,7 @@ include 'scripts/connect.php';
 
       <tbody style="font-size: 15px;">
       <?php
+include 'scripts/connect.php';
 $query = "SELECT * FROM productbid;";
 mysqli_query($con, $query);
 $result = mysqli_query($con, $query);
@@ -96,7 +94,6 @@ while ($row = mysqli_fetch_array($result)) {
     }
 
     $_SESSION['timeleft'] = $diff->format("%a");
-    $_SESSION['nb'] = $row['productId'];
     echo "<td> <button type='submit' name='NewBid' value=" . $row['productId'] . ">Bid</button></td>";
     echo '</tr>';
 }

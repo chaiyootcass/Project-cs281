@@ -8,12 +8,16 @@
 </head>
 <?php
 session_start();
-$pId = $_SESSION['nb'];
 $db = mysqli_connect('localhost', 'root', '', 'cd') or die("connection failed");
 $name = $_SESSION['name'];
 $i = 0;
 $msg = "";
 $time = $_SESSION['timeleft'];
+if (isset($_POST['NewBid'])) {
+    $pId = $_POST['NewBid'];
+} else {
+    $pId = $_SESSION['pid'];
+}
 $Err = 0;
 $color = array("success", "error", "info", "warning");
 if (!isset($_SESSION['id'])) {
@@ -80,8 +84,8 @@ if (isset($_POST['submit'])) {
 
             $query = "INSERT into ordersbid VALUES($max,'$name','gas',$Bid,'$address',$Pid,$Quantity,$status);";
             $result = mysqli_query($db, $query) or die("could not add");
-
-            $updateQ = "update productbid set quantity=quantity-$Quantity,currBid=$Bid where productId=$Pid;";
+            //$updateQ = "update productbid set quantity=quantity-$Quantity,currBid=$Bid where productId=$Pid;";
+            $updateQ = "update productbid set currBid=$Bid where productId=$Pid;";
             $result2 = mysqli_query($db, $updateQ) or die('Could not update');
             if ($result && $result2) {
                 //echo "<title> Successfully Added Product</title>";
@@ -115,11 +119,8 @@ include 'templates/navigation.php';
 include 'templates/slider.php';
 ?>
 <!--slider end -->
-<?php
-include 'scripts/connect.php';
-?>
 <div id="cart" >
-  <div class="label" style="margin-left:0px;margin-top: 510px;">
+  <div class="label" style="margin-left:0px;margin-top: 542px;">
     <h3>Auction
     </h3>
   </div>
@@ -144,7 +145,6 @@ include 'scripts/connect.php';
       <?php
 include 'scripts/connect.php';
 $query = "SELECT * FROM productbid where productId=$pId;";
-mysqli_query($con, $query);
 $result = mysqli_query($con, $query);
 while ($row = mysqli_fetch_array($result)) {
     echo '<tr>';
@@ -212,10 +212,11 @@ while ($row = mysqli_fetch_array($result)) {
                 </tr>
                 <tr>
                     <td align="right"><label>Enter Quantity:</label></td>
-                    <td align="left"><input type='radio' checked>Cash On Delivery</td>
+                    <td align="left"><input type='radio' checked>Payment-Transfer</td>
                 </tr>
                 <tr >
                     <td  colspan="2" align="center">
+                    <input type='hidden' name='pid' value='<?php $pId?>'>
                         <button type='submit' name='submit' value='4'>Place Bid</button>
                     </td>
                 </tr>

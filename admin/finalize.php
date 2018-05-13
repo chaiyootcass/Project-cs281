@@ -1,6 +1,10 @@
 <?php
 session_start();
-$oid = $_POST['Final'];
+if (isset($_POST['Final'])) {
+    $oid = $_POST['Final'];
+} else {
+    $oid = $_SESSION['Product_to_finalize'];
+}
 $name = $_SESSION['name'];
 $msg = "";
 $_SESSION["Order_to_finalize"] = $oid;
@@ -31,7 +35,7 @@ if (isset($_POST['Final'])) {
         $query = "UPDATE ordersbid set status=1 where OrderId=$OID";
         $result = mysqli_query($db, $query) or die('Could not sell');
 
-        $query = "UPDATE productbid set minbid=maxbid, maxbid=maxbid+$amt, currBid=0 where productId=$PID;";
+        $query = "UPDATE productbid set minbid=maxbid, maxbid=maxbid+$amt,quantity=quantity-1, currBid=0 where productId=$PID;";
         $result2 = mysqli_query($db, $query) or die('Could not Update');
         if ($result2 && $result) {
             //echo "<title> Success !</title>";
@@ -80,7 +84,6 @@ if (isset($_POST['Final'])) {
             <?php
 include '../scripts/connect.php';
 $query = "SELECT * FROM ordersbid where OrderId=$oid;";
-mysqli_query($con, $query);
 $result = mysqli_query($con, $query);
 while ($row = mysqli_fetch_array($result)) {
     $id = $row['OrderId'];

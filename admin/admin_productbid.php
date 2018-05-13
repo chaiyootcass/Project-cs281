@@ -1,6 +1,6 @@
 <?php
 session_start();
-$name = $_SESSION['name'];
+$name = 'gas';
 if (!isset($_SESSION['name'])) {
     header("location: ../admin.php");
     exit();
@@ -28,7 +28,7 @@ $color = array("active", "success", "info", "warning", "danger");
         <?php include_once '../templates/admin_nav.php';?>
       </div>
       <div class="messages">
-
+      <form name='myproducts' method="POST" action="deleteproductbid.php" >
         <table class="table" width="1000px" style="border-radius:10px; background: rgba(0,0,0,0.4)">
           <thead>
             <tr style="color: #ffffff">
@@ -46,7 +46,6 @@ $color = array("active", "success", "info", "warning", "danger");
             <?php
 include '../scripts/connect.php';
 $query = "SELECT * FROM productbid where sellerUsr='$name';";
-mysqli_query($con, $query);
 $result = mysqli_query($con, $query);
 while ($row = mysqli_fetch_array($result)) {
     $id = $row['productId'];
@@ -96,13 +95,16 @@ $i++;
               <td>
                 <?php echo $diff; ?>
               </td>
+              <td> <?php
+echo "<button type='submit' name='Delete' value=" . $row['productId'] . ">Delete</button>"
+    ?></td>
             </tr>
             <?php
 }
 ?>
           </tbody>
         </table>
-
+</form>
       </div>
       <form method="post" action="admin_productbid.php">
         <select name='filter'>
@@ -171,9 +173,6 @@ $i++;
                 <?php echo $quatity; ?>
               </td>
               <td>
-                <?php echo $quatity; ?>
-              </td>
-              <td>
                 <?php echo $address; ?>
               </td>
               <?php
@@ -187,6 +186,8 @@ if ($row['status'] == 0) {
 
             </tr>
             <?php
+$_SESSION["Sale_status"] = $row['status'];
+    $_SESSION["Product_to_finalize"] = $row['productId'];
 }
 ?>
           </tbody>

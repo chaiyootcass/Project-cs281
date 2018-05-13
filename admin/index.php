@@ -132,5 +132,5 @@ if (isset($_POST['product_name'])) {
 
 </body>
 </html>
-?>
+
 
