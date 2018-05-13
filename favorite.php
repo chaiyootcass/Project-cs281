@@ -76,15 +76,13 @@ if ($query_run = mysqli_query($con, $sql)) {
         </title>
         <link rel="stylesheet" href="css/product_style.css"/>
   </head>
-
     <!-- Content -->
     <div id="content">
         <!-- All Products -->
         <div class="products-holder">
-
             <div class="middle">
                 <div class="label">
-                    <h3>Farvoite Products</h3>
+                    <h3>Favorite Products</h3>
                 </div>
                 <div class="cl"></div>
                 <?php
@@ -125,7 +123,7 @@ foreach ($sortedCart as $value => $count) {
                     <?php }
     }
 }
-if ($carts == "You have a empty farvorite right now!") {
+if ($carts == "You have a empty favorite right now!") {
     echo "<h2 style='color: white; padding: 20px;'>" . $carts . "</h2>";
 } else {?>
     <form action="favorite.php" method="post" style="align:right;">
