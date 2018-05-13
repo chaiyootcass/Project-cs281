@@ -202,7 +202,7 @@ if (isset($_SESSION['id'])) {
                 <div class="cl"></div>
                 <?php
 include 'scripts/connect.php';
-$sql = "SELECT * FROM `product` LIMIT 4";
+$sql = "SELECT * FROM `product` ORDER BY RAND() LIMIT 4";
 if ($query_run = mysqli_query($con, $sql)) {
     while ($row = mysqli_fetch_assoc($query_run)) {
         $id = $row['id'];
