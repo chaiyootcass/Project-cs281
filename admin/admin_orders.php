@@ -34,7 +34,7 @@ $color = array("active", "success", "info", "warning", "danger");
         <table class="table" width="1000px" style="border-radius:10px; background: rgba(0,0,0,0.4)">
           <thead>
             <tr style="color: #ffffff">
-              <th>CNIC No.
+              <th>VISA No.
               </th>
               <th>Email
               </th>
