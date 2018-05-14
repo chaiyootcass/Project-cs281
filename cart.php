@@ -12,36 +12,36 @@ if (!isset($_SESSION['id'])) {
     header("location: index.php");
     exit();
 }
-if (isset($_POST['cancelcart'])) { 
+if (isset($_POST['cancelcart'])) {
 
-  $con = mysqli_connect("localhost", "root", "","cd"); 
-  $mem_id = $_SESSION['id']; 
+    $con = mysqli_connect("localhost", "root", "", "cd");
+    $mem_id = $_SESSION['id'];
 
-  $sql = "SELECT cart FROM cart WHERE mem_id = '$mem_id'"; 
-  $run_query = mysqli_query($con,$sql); 
-  $data = mysqli_fetch_assoc($run_query); 
-  $data = $data["cart"]; 
-  $token = explode(",",$data); 
+    $sql = "SELECT cart FROM cart WHERE mem_id = '$mem_id'";
+    $run_query = mysqli_query($con, $sql);
+    $data = mysqli_fetch_assoc($run_query);
+    $data = $data["cart"];
+    $token = explode(",", $data);
 
-  if(!is_array($token)) { 
-    $token = array_push($token,$data); 
-  } 
+    if (!is_array($token)) {
+        $token = array_push($token, $data);
+    }
 
-  foreach ($token as $key){ 
+    foreach ($token as $key) {
 
-    $sql = "SELECT quantity FROM product WHERE id = '$key'"; 
-    $run_query = mysqli_query($con,$sql); 
-    $qty = mysqli_fetch_assoc($run_query); 
-    $qty = $qty['quantity']; 
+        $sql = "SELECT quantity FROM product WHERE id = '$key'";
+        $run_query = mysqli_query($con, $sql);
+        $qty = mysqli_fetch_assoc($run_query);
+        $qty = $qty['quantity'];
 
-    $qty += 1; 
+        $qty += 1;
 
-    $sql = "UPDATE product SET quantity = '$qty' WHERE id = '$key'"; 
-    $run_query = mysqli_query($con,$sql); 
-  } 
+        $sql = "UPDATE product SET quantity = '$qty' WHERE id = '$key'";
+        $run_query = mysqli_query($con, $sql);
+    }
 
-  $sql = "DELETE FROM cart WHERE mem_id = '$mem_id'"; 
-  $run_query = mysqli_query($con,$sql); 
+    $sql = "DELETE FROM cart WHERE mem_id = '$mem_id'";
+    $run_query = mysqli_query($con, $sql);
 
 }
 
@@ -83,7 +83,7 @@ if ($query_run = mysqli_query($con, $sql)) {
 }
 ?>
 <div id="cart" >
-  <div class="label" style="margin-left:0px;margin-top: 510px;">
+  <div class="label" style="margin-left:0px;margin-top: 541px;">
     <h3>Shopping Cart
     </h3>
   </div>
@@ -148,32 +148,28 @@ foreach ($sortedCart as $value => $count) {
           </td>
           <td>
           </td>
-          <td  align="center"  style="color:#026a84; margin-right: 10px;">
+          <td  align="center"  style="color:#026a84; margin-right: 10px;color:white;">
             <?php
 $shipping = 0;
-$vat = $total*0.07;
+$vat = $total * 0.07;
 
 if ($total == 0) {
     echo "<h2 style='color: white; padding: 20px;'>" . $carts . "</h2>";
-} else
-{
+} else {
 
-  echo "sub-total =" . $total . "<br>";
-  if($total >= 499)
-  {
-  $shipping = 0;
-  }
-  else
-  {
-  $shipping = 50;
-  }
-  $sum = $total+$vat+$shipping;
-  echo "vat (7%) =";
-  echo number_format($vat, 2, '.', '');
-  echo "<br>";
-  echo "Shipping  =" . $shipping . "<br>";
-  echo "total     =";
-  echo  number_format($sum, 2, '.', '');
+    echo "sub-total =" . $total . "<br>";
+    if ($total >= 499) {
+        $shipping = 0;
+    } else {
+        $shipping = 50;
+    }
+    $sum = $total + $vat + $shipping;
+    echo "vat (7%) =";
+    echo number_format($vat, 2, '.', '');
+    echo "<br>";
+    echo "Shipping  =" . $shipping . "<br>";
+    echo "total     =";
+    echo number_format($sum, 2, '.', '');
 
 }
 ?>
@@ -189,8 +185,8 @@ if ($total == 0) {
 if ($total != 0) {?>
             <!-- ยกเลิกรายการทั้งหมด -->
     <form action="cart.php" method="post">
-    <input type="submit" name="cancelcart" value="CancelCart"/>
-    
+    <input  id="checkout" type="submit" name="cancelcart" value="CancelCart"/>
+
 </form>
 
             <br>
