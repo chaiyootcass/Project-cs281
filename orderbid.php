@@ -211,7 +211,7 @@ while ($row = mysqli_fetch_array($result)) {
                     <td align="left"><Textarea  style="height: 80px; width: 300px;padding: 5px;resize: none;" name="addr" placeholder="Enter address..." class="text_input add" ></textarea></td>
                 </tr>
                 <tr>
-                    <td align="right"><label>Enter Quantity:</label></td>
+                    <td align="right"><label>Payment Method:</label></td>
                     <td align="left"><input type='radio' checked>Payment-Transfer</td>
                 </tr>
                 <tr >
