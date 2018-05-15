@@ -45,8 +45,9 @@ include 'templates/slider.php';
       </div>
       <p style="margin-top: 15px; color: #ffffff;font-size: 16px; font-style: italic;">
         <?php echo $status_order;
-
-        ?>
+        ?> 
+        </p><br> <font face = "tahoma" size = "3" color = "black"> <tt><b>GET INVOICE HERE -></b></tt>  </font> 
+      <a href ="invoice.php" target = "_blank" > <img src = "images/invoice.png" width= "40" height="40" > </a>
       </p>
     </div>
   </div>

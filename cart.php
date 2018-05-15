@@ -74,6 +74,7 @@ if ($query_run = mysqli_query($con, $sql)) {
         $carts = $row['cart'];
         $total = $row['total'];
         $carts = $carts . "";
+        
         $_SESSION['total'] = $total;
         $cart = explode(",", $carts);
         $_SESSION['quantity'] = count($cart);
@@ -109,6 +110,13 @@ if ($query_run = mysqli_query($con, $sql)) {
         <?php
 include 'scripts/connect.php';
 $sortedCart = array_count_values($cart);
+
+// array save list
+$aryName = [];
+$aryQuan = [];
+$aryAmount = [];
+$couA= 0;
+
 foreach ($sortedCart as $value => $count) {
     $sql = "SELECT * FROM `product` where id='$value' LIMIT 1 ";
     if ($query_run = mysqli_query($con, $sql)) {
@@ -119,22 +127,25 @@ foreach ($sortedCart as $value => $count) {
             $product_price = $row['price'];
             $product_quantity = $row['quantity'];
             $status = $row['status'];
+
+            $couA +=1; // update value list 
         }
-    }
+    } 
     if ($total != 0) {
+              //save list each loop with array
         ?>
         <tr>
           <td align="center"  >
             <img src="products/<?php echo $id; ?>.jpg" height="40" width="40" alt="" style="border-radius: 5px; "/>
           </td>
           <td align="center" style="border-bottom: 1px white solid;">
-            <?php echo $product_name; ?>
+            <?php echo $product_name; $aryName[] = $product_name?> 
           </td>
           <td align="center" style="border-bottom: 1px white solid;">
-            <?php echo $count; ?>
+            <?php echo $count; $aryQuan[] =$count ?> 
           </td>
           <td align="center"  style="border-bottom: 1px white solid;">
-            <?php echo $count * $product_price; ?>
+            <?php echo $count * $product_price; $aryAmount[] = $count * $product_price?> 
           </td>
         </tr>
         <?php
@@ -170,8 +181,17 @@ if ($total == 0) {
     echo "Shipping  =" . $shipping . "<br>";
     echo "total     =";
     echo number_format($sum, 2, '.', '');
-
+    $_SESSION['sum'] = $sum ;
 }
+  //send value to invoice.php
+      $_SESSION['total'] = $total;
+      $_SESSION['shipping'] = $shipping;
+      $_SESSION['vat'] = $vat;
+      
+      $_SESSION['aryName'] = $aryName;
+      $_SESSION['aryQuan'] = $aryQuan;
+      $_SESSION['aryAmount'] = $aryAmount;
+      $_SESSION['count'] = $couA;
 ?>
           </td>
         </tr>
