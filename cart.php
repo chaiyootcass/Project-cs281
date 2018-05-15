@@ -45,6 +45,8 @@ if (isset($_POST['cancelcart'])) {
 
 }
 
+
+
 ?>
 <?php
 include 'templates/header_top.php';
@@ -74,7 +76,6 @@ if ($query_run = mysqli_query($con, $sql)) {
         $carts = $row['cart'];
         $total = $row['total'];
         $carts = $carts . "";
-        
         $_SESSION['total'] = $total;
         $cart = explode(",", $carts);
         $_SESSION['quantity'] = count($cart);
@@ -110,13 +111,6 @@ if ($query_run = mysqli_query($con, $sql)) {
         <?php
 include 'scripts/connect.php';
 $sortedCart = array_count_values($cart);
-
-// array save list
-$aryName = [];
-$aryQuan = [];
-$aryAmount = [];
-$couA= 0;
-
 foreach ($sortedCart as $value => $count) {
     $sql = "SELECT * FROM `product` where id='$value' LIMIT 1 ";
     if ($query_run = mysqli_query($con, $sql)) {
@@ -127,25 +121,22 @@ foreach ($sortedCart as $value => $count) {
             $product_price = $row['price'];
             $product_quantity = $row['quantity'];
             $status = $row['status'];
-
-            $couA +=1; // update value list 
         }
-    } 
+    }
     if ($total != 0) {
-              //save list each loop with array
         ?>
         <tr>
           <td align="center"  >
             <img src="products/<?php echo $id; ?>.jpg" height="40" width="40" alt="" style="border-radius: 5px; "/>
           </td>
           <td align="center" style="border-bottom: 1px white solid;">
-            <?php echo $product_name; $aryName[] = $product_name?> 
+            <?php echo $product_name; ?>
           </td>
           <td align="center" style="border-bottom: 1px white solid;">
-            <?php echo $count; $aryQuan[] =$count ?> 
+            <?php echo $count; ?>
           </td>
           <td align="center"  style="border-bottom: 1px white solid;">
-            <?php echo $count * $product_price; $aryAmount[] = $count * $product_price?> 
+            <?php echo $count * $product_price; ?>
           </td>
         </tr>
         <?php
@@ -162,36 +153,108 @@ foreach ($sortedCart as $value => $count) {
           <td  align="center"  style="color:#026a84; margin-right: 10px;color:white;">
             <?php
 $shipping = 0;
-$vat = $total * 0.07;
+$vat = $total*0.07;
+if(isset($_POST['promosubmit'])){
+  $con = mysqli_connect("localhost", "root", "", "cd");
+
+ /* if(empty($_POST['thecode'])){
+    header("location: cart.php");
+    exit();
+  }*/
+
+  $code = $_POST['thecode'];
+
+  $sql = "SELECT * FROM promocode WHERE code = '$code'";
+  $run_query = mysqli_query($con, $sql);
+ /* if($run_query->num_rows == 0) {
+    header("location: cart.php");
+    exit();
+  }*/
+  
+  $data = mysqli_fetch_assoc($run_query);
+  $data = $data["used"];
+  
+  if($data == 0){
+    if(isset($_POST['promosubmit'])){
+      $con = mysqli_connect("localhost", "root", "", "cd");
+    
+     /* if(empty($_POST['thecode'])){
+        header("location: cart.php");
+        exit();
+      }*/
+    
+      $code = $_POST['thecode'];
+    
+      $sql = "SELECT * FROM promocode WHERE code = '$code'";
+      $run_query = mysqli_query($con, $sql);
+      /*if($run_query->num_rows == 0) {
+        header("location: cart.php");
+        exit();
+      }*/
+      
+      $data = mysqli_fetch_assoc($run_query);
+      $_SESSION["data"] = $data["code"];
+      
+      
+
+  }
+  
+  }
+}
 
 if ($total == 0) {
+
     echo "<h2 style='color: white; padding: 20px;'>" . $carts . "</h2>";
+
 } else {
 
-    echo "sub-total =" . $total . "<br>";
-    if ($total >= 499) {
-        $shipping = 0;
-    } else {
-        $shipping = 50;
-    }
-    $sum = $total + $vat + $shipping;
-    echo "vat (7%) =";
-    echo number_format($vat, 2, '.', '');
+  echo "sub-total =" . $total . "<br>";
+  $shipping = 50;
+
+
+ 
+
+  $sum = $total+$vat+$shipping;
+
+  //echo "vat (7%)  =" . $vat . "<br>";
+
+ //echo "vat (7%)  =" number_format($vat, 2, '.', '');
+ if(isset($_POST["promosubmit"])){
+  if($_SESSION["data"] ==isset($_POST["thecode"])){
+
     echo "<br>";
-    echo "Shipping  =" . $shipping . "<br>";
-    echo "total     =";
-    echo number_format($sum, 2, '.', '');
-    $_SESSION['sum'] = $sum ;
-}
-  //send value to invoice.php
-      $_SESSION['total'] = $total;
-      $_SESSION['shipping'] = $shipping;
-      $_SESSION['vat'] = $vat;
+    echo"Promotion -5%<br> ";
       
-      $_SESSION['aryName'] = $aryName;
-      $_SESSION['aryQuan'] = $aryQuan;
-      $_SESSION['aryAmount'] = $aryAmount;
-      $_SESSION['count'] = $couA;
+    $total=$total-($total*0.05);
+    $sum = $total+$vat+$shipping;
+    }
+     else if($_SESSION["data"] ==null || $_SESSION["data"] != isset($_POST["thecode"]))
+      {
+    
+        echo"No promotion <br>";
+      }
+}
+
+ 
+
+
+  echo "vat (7%) =";
+
+  echo number_format($vat, 2, '.', '');
+
+  echo "<br>";
+  echo "Shipping  =" . $shipping . "<br>";
+
+ /* echo "<br>";
+  echo "Promotion = -".$promo."<br>";*/
+  echo "total     =";
+
+  echo  number_format($sum, 2, '.', '');
+
+}
+
+
+
 ?>
           </td>
         </tr>
@@ -213,6 +276,13 @@ if ($total != 0) {?>
             <form action="checkout.php" method="post">
               <input type="submit" id="checkout" value="Checkout"/>
             </form>
+
+            <br>
+            <form action="cart.php" method="post">
+            <input type="text" name="thecode" placeholder="Enter Promotioncode..."/>
+            <input name="promosubmit" type="submit" value="Submit">
+            </form>
+
             <?php }?>
           </td>
         </tr>
