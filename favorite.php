@@ -123,7 +123,7 @@ foreach ($sortedCart as $value => $count) {
                     <?php }
     }
 }
-if ($carts == "You have a empty favorite right now!") {
+if ($carts == "You have a empty farvorite right now!") {
     echo "<h2 style='color: white; padding: 20px;'>" . $carts . "</h2>";
 } else {?>
     <form action="favorite.php" method="post" style="align:right;">
