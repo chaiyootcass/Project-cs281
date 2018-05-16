@@ -96,7 +96,7 @@ $i++;
                 <?php echo $diff; ?>
               </td>
               <td> <?php
-echo "<button type='submit' name='Delete' value=" . $row['productId'] . ">Delete</button>"
+echo "<button type='submit' name='Delete' value=" . $id . ">Delete</button>"
     ?></td>
             </tr>
             <?php

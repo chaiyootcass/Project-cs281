@@ -56,6 +56,7 @@ $query = "SELECT * FROM productbid;";
 mysqli_query($con, $query);
 $result = mysqli_query($con, $query);
 while ($row = mysqli_fetch_array($result)) {
+    $id = $row['productId'];
     echo '<tr>';
     echo '<td align="center"><img src="products/bid/' . $row['productName'] . '.jpg" height="60" width="60" alt="" style="border-radius: 5px; "/> </td>';
     echo '<td align="center" style="border-bottom: 1px white solid;">' . $row['productName'] . '</td>';
@@ -94,7 +95,7 @@ while ($row = mysqli_fetch_array($result)) {
     }
 
     $_SESSION['timeleft'] = $diff->format("%a");
-    echo "<td> <button type='submit' name='NewBid' value=" . $row['productId'] . ">Bid</button></td>";
+    echo "<td> <button type='submit' name='NewBid' value=" . $id . ">Bid</button></td>";
     echo '</tr>';
 }
 ?>

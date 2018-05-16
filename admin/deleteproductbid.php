@@ -18,7 +18,6 @@ if (isset($_POST['submit'])) {
     $Err = 0;
     $idee = $_POST['submit'];
     $db = mysqli_connect('localhost', 'root', '', 'cd') or die('connection failed');
-
     if ($idee == 5) {
         $PID = $_SESSION['de'];
         $query = "DELETE from productbid where productId=$PID;";
