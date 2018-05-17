@@ -23,5 +23,8 @@
     <a href="notification.php">
         <div id="page">Notification</div>
     </a>
+	<a href="admin_promotion.php">
+        <div id="page">Add promotion</div>
+    </a>
 </nav>
 <div id="down_menu"></div>
